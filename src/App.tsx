@@ -9,17 +9,16 @@ import {
   StyleSheet,
   PDFDownloadLink,
 } from "@react-pdf/renderer";
-import { start } from "repl";
 
 const App = () => {
-  const [hvem, setHvem] = useState<string>("");
-  const [hvorfor, setHvorfor] = useState<string>("");
-  const [datoForVarsel, setDatForVarsel] = useState<Date>(new Date());
-  const [startDato, setStartDato] = useState<Date>(new Date());
-  const [sluttDato, setSluttDato] = useState<Date>();
-  const [permitteringsGrad, setPermitteringsGrad] = useState<number>(100);
-  const [stillingsGrad, setStillingsGrad] = useState<number>(100);
-  const [ansattDato, setAnsattDato] = useState<Date>();
+  const [hvem, setHvem] = useState<string>();
+  const [hvorfor, setHvorfor] = useState<string>();
+  const [datoForVarsel, setDatForVarsel] = useState<string>();
+  const [startdato, setStartdato] = useState<string>();
+  const [sluttdato, setSluttdato] = useState<string>();
+  const [permitteringsgrad, setPermitteringsgrad] = useState<number>();
+  const [stillingsgrad, setStillingsgrad] = useState<number>();
+  const [ansattdato, setAnsattdato] = useState<string>();
   const [enighet, setEnighet] = useState<boolean>();
 
   return (
@@ -33,49 +32,60 @@ const App = () => {
       />
       <TextField
         label="Hvorfor?"
-        value={hvem}
+        value={hvorfor}
         onChange={(event) => {
           setHvorfor(event.target.value);
         }}
       />
       <TextField
         label="Dato for varsel"
-        value={hvem}
+        value={datoForVarsel}
         onChange={(event) => {
-          setDatForVarsel(new Date(event.target.value));
+          setDatForVarsel(event.target.value);
         }}
       />
       <TextField
         label="Dato for permitteringsstart"
-        value={hvem}
+        value={startdato}
         onChange={(event) => {
-          setStartDato(new Date(event.target.value));
+          setStartdato(event.target.value);
+        }}
+      />
+      <TextField
+        label="Dato for permitteringsslutt"
+        value={sluttdato}
+        onChange={(event) => {
+          setSluttdato(event.target.value);
         }}
       />
       <TextField
         label="Stillingsgrad"
-        value={hvem}
+        value={stillingsgrad}
         onChange={(event) => {
-          setStillingsGrad(parseInt(event.target.value));
+          setStillingsgrad(parseInt(event.target.value));
         }}
       />
       <TextField
         label="PermitteringsGrad"
-        value={hvem}
+        value={permitteringsgrad}
         onChange={(event) => {
-          setPermitteringsGrad(parseInt(event.target.value));
+          setPermitteringsgrad(parseInt(event.target.value));
         }}
       />
       <TextField
         label="Ansattsdato"
-        value={hvem}
+        value={ansattdato}
         onChange={(event) => {
-          setAnsattDato(new Date(event.target.value));
+          setAnsattdato(event.target.value);
         }}
       />
       <RadioGroup legend="Er partene enige">
-        <Radio value="ja">Ja</Radio>
-        <Radio value="nei">Nei</Radio>
+        <Radio value="ja" onClick={() => setEnighet(true)}>
+          Ja
+        </Radio>
+        <Radio value="nei" onClick={() => setEnighet(false)}>
+          Nei
+        </Radio>
       </RadioGroup>
 
       <PDFDownloadLink
@@ -85,13 +95,13 @@ const App = () => {
             hvem={hvem}
             hvorfor={hvorfor}
             datoForVarsel={datoForVarsel}
-            startDato={startDato}
-            sluttDato={sluttDato}
-            permitteringsGrad={permitteringsGrad}
-            stillingsGrad={stillingsGrad}
-            ansattDato={ansattDato}
+            startDato={startdato}
+            sluttDato={sluttdato}
+            permitteringsGrad={permitteringsgrad}
+            stillingsGrad={stillingsgrad}
+            ansattDato={ansattdato}
             enighet={enighet}
-            />
+          />
         }
         fileName="permitteringsvarsel.pdf"
       >
@@ -116,14 +126,14 @@ const styles = StyleSheet.create({
 });
 
 type Props = {
-  hvem: string;
-  hvorfor: string
-  datoForVarsel: Date;
-  startDato: Date;
-  sluttDato?: Date;
-  permitteringsGrad: number;
-  stillingsGrad: number;
-  ansattDato?: Date;
+  hvem?: string;
+  hvorfor?: string;
+  datoForVarsel?: string;
+  startDato?: string;
+  sluttDato?: string;
+  permitteringsGrad?: number;
+  stillingsGrad?: number;
+  ansattDato?: string;
   enighet?: boolean;
 };
 
@@ -141,15 +151,15 @@ const PermitteringsvarselPDF: FunctionComponent<Props> = ({
   <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.section}>
-        <Text>{hvem} skal permitteres! Lykke til videre.</Text>
-        <Text>{hvorfor} skal permitteres! Lykke til videre.</Text>
-        <Text>{datoForVarsel} skal permitteres! Lykke til videre.</Text>
-        <Text>{startDato} skal permitteres! Lykke til videre.</Text>
-        <Text>{sluttDato} skal permitteres! Lykke til videre.</Text>
-        <Text>{permitteringsGrad} skal permitteres! Lykke til videre.</Text>
-        <Text>{stillingsGrad} skal permitteres! Lykke til videre.</Text>
-        <Text>{ansattDato} skal permitteres! Lykke til videre.</Text>
-        <Text>{enighet} skal permitteres! Lykke til videre.</Text>
+        <Text>{hvem}</Text>
+        <Text>{hvorfor}</Text>
+        <Text>{datoForVarsel}</Text>
+        <Text>{startDato}</Text>
+        <Text>{sluttDato}</Text>
+        <Text>{permitteringsGrad}</Text>
+        <Text>{stillingsGrad}</Text>
+        <Text>{ansattDato}</Text>
+        <Text>{enighet}</Text>
       </View>
     </Page>
   </Document>
