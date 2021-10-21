@@ -14,11 +14,11 @@ import { start } from "repl";
 const App = () => {
   const [hvem, setHvem] = useState<string>("");
   const [hvorfor, setHvorfor] = useState<string>("");
-  const [datoForVarsel, setDatForVarsel] = useState<Date>();
-  const [startDato, setStartDato] = useState<Date>();
+  const [datoForVarsel, setDatForVarsel] = useState<Date>(new Date());
+  const [startDato, setStartDato] = useState<Date>(new Date());
   const [sluttDato, setSluttDato] = useState<Date>();
-  const [permitteringsGrad, setPermitteringsGrad] = useState<number>();
-  const [stillingsGrad, setStillingsGrad] = useState<number>();
+  const [permitteringsGrad, setPermitteringsGrad] = useState<number>(100);
+  const [stillingsGrad, setStillingsGrad] = useState<number>(100);
   const [ansattDato, setAnsattDato] = useState<Date>();
   const [enighet, setEnighet] = useState<boolean>();
 
@@ -120,11 +120,11 @@ type Props = {
   hvorfor: string
   datoForVarsel: Date;
   startDato: Date;
-  sluttDato: Date;
+  sluttDato?: Date;
   permitteringsGrad: number;
   stillingsGrad: number;
-  ansattDato: Date;
-  enighet: boolean;
+  ansattDato?: Date;
+  enighet?: boolean;
 };
 
 const PermitteringsvarselPDF: FunctionComponent<Props> = ({
