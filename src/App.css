@@ -1,13 +1,5 @@
 .App {
-}
-
-.hvordan-permittere {
-}
-
-@media print {
-    .App {
-    }
-
-    .hvordan-permittere {
-    }
+    margin: 0 auto;
+    max-width: 37.5rem;
+    padding: 2rem;
 }

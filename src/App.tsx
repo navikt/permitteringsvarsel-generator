@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState } from "react";
 import "./App.css";
-import { Radio, RadioGroup, TextField } from "@navikt/ds-react";
+import { Heading, Radio, RadioGroup, TextField } from "@navikt/ds-react";
 import {
   Page,
   View,
@@ -23,6 +23,10 @@ const App = () => {
 
   return (
     <div className="App">
+      <Heading size="large" spacing>
+        Lag permitteringsvarsel
+      </Heading>
+
       <TextField
         label="Hvem skal permitteres?"
         value={hvem}
